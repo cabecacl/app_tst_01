@@ -16,8 +16,8 @@ export class MyApp {
   // confCliente : any;
   solicitacoesCompras : any;
 
-  //  rootPage = HomePage;
-  rootPage = SolicitacoesComprasPage;
+     rootPage = HomePage;
+  // rootPage = SolicitacoesComprasPage;
   // rootPage = ConfClientePage;
 
   constructor(platform: Platform) {
