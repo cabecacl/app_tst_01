@@ -1,0 +1,43 @@
+<!-- <ion-header >
+  <ion-navbar class="getStart">
+    <ion-title>
+      App TST MV
+    </ion-title> -->
+    <!-- <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> -->
+    <!-- <ion-buttons start>
+      <button ion-button top small (click) = "abrirConfCliente()">
+        <ion-icon name="construct"></ion-icon>
+      </button>
+    </ion-buttons> -->
+
+
+  <!-- </ion-navbar>
+</ion-header> -->
+
+<ion-content padding class="getStart">
+  <ion-buttons start right>
+    <button ion-button outline top small (click) = "abrirConfCliente()">
+      <ion-icon name="construct" ></ion-icon>
+    </button>
+  </ion-buttons>
+
+      <h2>MV - TST APRV</h2>
+
+          <form #login = "ngForm" (ngSubmit) = "logarConf(login)">
+              <ion-list>
+                  <ion-item>
+                      <ion-label floating>Usuário</ion-label>
+                      <ion-input type="text" name="usuario" ngModel #usuario="ngModel"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label floating>Senha</ion-label>
+                      <ion-input type="password" name="senha" ngModel #senha="ngModel"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                      <button [disabled]="login.invalid" ion-button full block color="danger">Manter Dados</button>
+                  </ion-item>
+              </ion-list>
+          </form>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Configuração Cliente
+    </ion-title>
+    <!-- <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> -->
+    <ion-buttons start>
+      <button ion-button small (click) = "close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Conf. do Cliente</h2>
+      <form #conf = "ngForm" (ngSubmit) = "manterConf(conf)">
+          <ion-list>
+              <ion-item>
+                  <ion-label floating>URL de validação de acesso</ion-label>
+                  <ion-input type="text" name="url" ngModel #url="ngModel"></ion-input>
+              </ion-item>
+              <!-- <ion-item>
+                  <ion-label floating>Email</ion-label>
+                  <ion-input type="email" name="email" ngModel #email="ngModel"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label floating>Senha</ion-label>
+                  <ion-input type="password" name="senha" ngModel #senha="ngModel"></ion-input>
+              </ion-item> -->
+              <ion-item>
+                  <button [disabled]="conf.invalid" ion-button full block color="danger">Manter Dados</button>
+              </ion-item>
+          </ion-list>
+      </form>
+      <p>Valor Formulario: {{conf.value | json}}</p>
+</ion-content>
