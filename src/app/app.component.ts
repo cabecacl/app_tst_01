@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen, SQLite } from 'ionic-native';
+// import { Storage} from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
+import { ConfClientePage } from '../pages/confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../pages/solicitacoes-compras/solicitacoes-compras';
-
 
 
 @Component({
@@ -16,8 +17,8 @@ export class MyApp {
   // confCliente : any;
   solicitacoesCompras : any;
 
-     rootPage = HomePage;
-  // rootPage = SolicitacoesComprasPage;
+    //  rootPage = HomePage;
+   rootPage = SolicitacoesComprasPage;
   // rootPage = ConfClientePage;
 
   constructor(platform: Platform) {
@@ -30,6 +31,34 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+  /** Criação do banco de dados SQLite **/
+
+      let db = new SQLite();
+      db.openDatabase({
+                        name: "data.db",
+                        location: "default"
+                      })
+          .then(() => {
+                        db.executeSql("CREATE TABLE IF NOT EXISTS solicCompra "+
+                                      "(id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                                      " cd_sol_com TEXT, "+
+                                      " dt_sol_com TEXT, "+
+                                      " tp_situacao TEXT, "+
+                                      " vl_total TEXT)",
+                                    {})
+                          .then((data) => {
+                                            console.log("TABLE CREATED: ", data);
+                                          },
+                                (error) => {
+                                            console.error("Unable to execute sql", error);
+                                           }
+                                )
+                     }, (error) => {
+                                    console.error("Unable to open database", error);
+                                  }
+              );
+    /** ------------------------------------------------ **/
     });
   }
 
