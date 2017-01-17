@@ -15,16 +15,22 @@ import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
 export class SolicitacoesComprasPage {
 
   daoSolicitacoes : DAOSolicitacoesCompras;
-  listaSolicitacoes : SolicCompra[];
+  listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
   mostrarCheck: boolean = false;
+  plataforma : Platform;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform,
       public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao ) {
 
-      this.daoSolicitacoes = new DAOSolicitacoesCompras(platform);
-      this.buscarSolicitacoes();
-      console.log(this.listaSolicitacoes);
+      this.plataforma = platform;
+      console.log('Construtor:' + this.listaSolicitacoes);
   }
+
+ionViewDidLoad() {
+  this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
+  this.buscarSolicitacoes();
+  console.log('ionViewDidLoad ModalContasPage');
+}
   //
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad SolicitacoesComprasPage');
@@ -58,32 +64,41 @@ export class SolicitacoesComprasPage {
 
     // this.listaSolicitacoes = this.daoSolicitacoes.getList();
 
-    let listaRetornoService : any;
+    // let listaRetornoService = new Array<SolicCompra>();
 
       this.solicitacoesService.buscarSolicitacoes().subscribe(
          data => {
-             listaRetornoService = data;
+             this.listaSolicitacoes = data;
+             console.log(data.value);
          },
          err => {
              console.log(err);
          },
-         () => {
+         () => {console.log('Itens recuperados');
 
-           if(listaRetornoService.length > 0){
+           if(this.listaSolicitacoes.length > 0){
 
-             listaRetornoService.forEach(item => {
-               this.daoSolicitacoes.inserir(item);
-             });
+             for (let item of this.listaSolicitacoes){
+               let sol = new SolicCompra();
+               sol.cd_sol_com = item.cd_sol_com;
+               sol.dt_sol_com = item.dt_sol_com;
+               sol.tp_situacao = item.tp_situacao;
+               sol.vl_total = item.vl_total;
+               sol.checado = false;
 
-             console.log("atualizou dados");
+               this.daoSolicitacoes.inserir(sol);
+               console.log('Inseriu item:' + sol.cd_sol_com);
+             }
+
+             console.log("atualizou dados:" + this.listaSolicitacoes.length);
 
              this.listaSolicitacoes = this.daoSolicitacoes.getList();
            }
 
-           console.log('Busca realizada com sucesso' + listaRetornoService)
+           console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
 
-         }
-     );
+         });
+
 
   }
 
@@ -116,6 +131,29 @@ export class SolicitacoesComprasPage {
   inserir(){
     this.daoSolicitacoes.inserir(new SolicCompra());
     this.listaSolicitacoes = this.daoSolicitacoes.getList();
+  }
+
+  consultar(){
+    // if(this.listaSolicitacoes.length > 0){
+
+      //  for (let item of this.listaSolicitacoes){
+      //    let sol = new SolicCompra();
+      //    sol.cd_sol_com = item.cd_sol_com;
+      //    sol.dt_sol_com = item.dt_sol_com;
+      //    sol.tp_situacao = item.tp_situacao;
+      //    sol.vl_total = item.vl_total;
+      //    sol.checado = false;
+       //
+      //    this.daoSolicitacoes.inserir(sol);
+      //    console.log('Inseriu item:' + sol.cd_sol_com);
+      //  }
+       //
+      //  console.log("atualizou dados:" + this.listaSolicitacoes.length);
+
+       this.listaSolicitacoes = this.daoSolicitacoes.getList();
+    //  }
+
+     console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
   }
 
 }
