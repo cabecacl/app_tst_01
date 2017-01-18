@@ -77,15 +77,15 @@ ionViewDidLoad() {
            if(this.listaSolicitacoes.length > 0){
 
              for (let item of this.listaSolicitacoes){
-               let sol = new SolicCompra();
-               sol.cd_sol_com = item.cd_sol_com;
-               sol.dt_sol_com = item.dt_sol_com;
-               sol.tp_situacao = item.tp_situacao;
-               sol.vl_total = item.vl_total;
-               sol.checado = false;
 
-               this.daoSolicitacoes.inserir(sol);
-               console.log('Inseriu item:' + sol.cd_sol_com);
+               let solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
+
+               if(solRec == null){
+                 this.daoSolicitacoes.inserir(item);
+               }else{
+                 this.daoSolicitacoes.editar(item);
+               }
+               console.log('Inseriu item:' + item.cd_sol_com);
              }
 
              console.log("atualizou dados:" + this.listaSolicitacoes.length);
