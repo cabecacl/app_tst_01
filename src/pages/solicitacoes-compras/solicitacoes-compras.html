@@ -18,6 +18,10 @@
     <button ion-button outline (click)="inserir()"> Inserir
       <!-- <ion-icon name="checkmark"></ion-icon> -->
     </button>
+    <button ion-button  (click)="consultar()"> consultar
+      <!-- <ion-icon name="checkmark"></ion-icon> -->
+    </button>
+
 
     <ion-item-sliding #slidingItem *ngFor="let item of listaSolicitacoes" >
 
@@ -44,13 +48,13 @@
 
 
               <template [ngIf]="!mostrarCheck" item-right>
-                <template [ngIf]="item.tp_situacao == 'P'" item-right>
+                <template [ngIf]="item.tp_situacao == 'U'" item-right>
                   <button ion-fab color="secondary"></button>
                 </template>
                 <template [ngIf]="item.tp_situacao == 'R'" item-right>
                   <button ion-fab color="danger"></button>
                 </template>
-                <template [ngIf]="item.tp_situacao == 'A'" item-right>
+                <template [ngIf]="item.tp_situacao == 'S'" item-right>
                   <button ion-fab ></button>
                 </template>
               </template>

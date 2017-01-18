@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ItemSliding, Platform } from 'ionic-angular';
 
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";
@@ -15,16 +15,22 @@ import {DetalhamentoSolicitacaoPage} from "../detalhamento-solicitacao/detalhame
 export class SolicitacoesComprasPage {
 
   daoSolicitacoes : DAOSolicitacoesCompras;
-  listaSolicitacoes : SolicCompra[];
+  listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
   mostrarCheck: boolean = false;
+  plataforma : Platform;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
       public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao ) {
 
-  //    this.daoSolicitacoes = new DAOSolicitacoesCompras();
-      this.buscarSolicitacoes();
-      console.log(this.listaSolicitacoes);
+      this.plataforma = platform;
+      console.log('Construtor:' + this.listaSolicitacoes);
   }
+
+ionViewDidLoad() {
+  this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
+  this.buscarSolicitacoes();
+  console.log('ionViewDidLoad ModalContasPage');
+}
   //
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad SolicitacoesComprasPage');
@@ -58,15 +64,53 @@ export class SolicitacoesComprasPage {
 
     //this.listaSolicitacoes = this.daoSolicitacoes.getList();
 
+  //    this.solicitacoesService.buscarSolicitacoes().subscribe(
+    //      data => {
+    //          this.listaSolicitacoes = data;
+    //      },
+    //      err => {
+    //          console.log(err);
+    //      },
+    //      () => console.log('Busca realizada com sucesso')
+    //  );
+    // this.listaSolicitacoes = this.daoSolicitacoes.getList();
+
+    // let listaRetornoService = new Array<SolicCompra>();
+
       this.solicitacoesService.buscarSolicitacoes().subscribe(
-          data => {
-              this.listaSolicitacoes = data;
-          },
-          err => {
-              console.log(err);
-          },
-          () => console.log('Busca realizada com sucesso')
-      );
+         data => {
+             this.listaSolicitacoes = data;
+             console.log(data.value);
+         },
+         err => {
+             console.log(err);
+         },
+         () => {console.log('Itens recuperados');
+
+           if(this.listaSolicitacoes.length > 0){
+
+             for (let item of this.listaSolicitacoes){
+               let sol = new SolicCompra();
+               sol.cd_sol_com = item.cd_sol_com;
+               sol.dt_sol_com = item.dt_sol_com;
+               sol.tp_situacao = item.tp_situacao;
+               sol.vl_total = item.vl_total;
+               sol.checado = false;
+
+               this.daoSolicitacoes.inserir(sol);
+               console.log('Inseriu item:' + sol.cd_sol_com);
+             }
+
+             console.log("atualizou dados:" + this.listaSolicitacoes.length);
+
+             this.listaSolicitacoes = this.daoSolicitacoes.getList();
+           }
+
+           console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
+
+         });
+
+
   }
 
 /**
@@ -97,6 +141,11 @@ export class SolicitacoesComprasPage {
 
   exibirDetalhes(solicitacao : SolicCompra){
     this.navCtrl.push(DetalhamentoSolicitacaoPage, {solicitacao: solicitacao});
+  }
+
+  consultar(){
+     this.listaSolicitacoes = this.daoSolicitacoes.getList();
+     console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
   }
 
 }
