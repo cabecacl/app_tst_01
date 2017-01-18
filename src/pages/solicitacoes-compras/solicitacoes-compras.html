@@ -63,7 +63,7 @@
               <button *ngIf="{{item.tp_situacao}} = 'A'" ion-fab ></button> -->
 
             </ion-col>
-            <ion-col width-40>
+            <ion-col width-40 (click)='exibirDetalhes(item);'>
               <h2 >Solicitação {{item.cd_sol_com}}</h2>
               <h3> Aberta por ... </h3>
               <h4> Em {{item.dt_sol_com}} </h4>

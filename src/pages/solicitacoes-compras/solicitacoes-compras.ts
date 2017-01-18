@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform} from 'ionic-angular';
+import { NavController, NavParams, ToastController, ItemSliding } from 'ionic-angular';
 
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
-
+import {DetalhamentoSolicitacaoPage} from "../detalhamento-solicitacao/detalhamento-solicitacao";
 
 @Component({
   selector: 'page-solicitacoes-compras',
@@ -18,10 +18,10 @@ export class SolicitacoesComprasPage {
   listaSolicitacoes : SolicCompra[];
   mostrarCheck: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform,
+  constructor(public navCtrl: NavController, public navParams: NavParams,
       public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao ) {
 
-      this.daoSolicitacoes = new DAOSolicitacoesCompras(platform);
+  //    this.daoSolicitacoes = new DAOSolicitacoesCompras();
       this.buscarSolicitacoes();
       console.log(this.listaSolicitacoes);
   }
@@ -56,35 +56,17 @@ export class SolicitacoesComprasPage {
   */
   buscarSolicitacoes(){
 
-    // this.listaSolicitacoes = this.daoSolicitacoes.getList();
-
-    let listaRetornoService : any;
+    //this.listaSolicitacoes = this.daoSolicitacoes.getList();
 
       this.solicitacoesService.buscarSolicitacoes().subscribe(
-         data => {
-             listaRetornoService = data;
-         },
-         err => {
-             console.log(err);
-         },
-         () => {
-
-           if(listaRetornoService.length > 0){
-
-             listaRetornoService.forEach(item => {
-               this.daoSolicitacoes.inserir(item);
-             });
-
-             console.log("atualizou dados");
-
-             this.listaSolicitacoes = this.daoSolicitacoes.getList();
-           }
-
-           console.log('Busca realizada com sucesso' + listaRetornoService)
-
-         }
-     );
-
+          data => {
+              this.listaSolicitacoes = data;
+          },
+          err => {
+              console.log(err);
+          },
+          () => console.log('Busca realizada com sucesso')
+      );
   }
 
 /**
@@ -113,9 +95,8 @@ export class SolicitacoesComprasPage {
     solicitacao.checado = !solicitacao.checado;
   }
 
-  inserir(){
-    this.daoSolicitacoes.inserir(new SolicCompra());
-    this.listaSolicitacoes = this.daoSolicitacoes.getList();
+  exibirDetalhes(solicitacao : SolicCompra){
+    this.navCtrl.push(DetalhamentoSolicitacaoPage, {solicitacao: solicitacao});
   }
 
 }
