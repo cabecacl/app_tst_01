@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, AlertController, ModalController, MenuController } from 'ionic-angular';
 
 import { ConfClientePage } from '../confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../solicitacoes-compras/solicitacoes-compras';
@@ -18,8 +18,9 @@ export class HomePage {
   optionsBoxOpen: boolean;
   optionsBoxData: any;
 
-  constructor(public navCtrl: NavController, private alertController: AlertController, private modalCtrl: ModalController) {
-
+  constructor(public navCtrl: NavController, private alertController: AlertController, private modalCtrl: ModalController,
+    public menuCtrl: MenuController) {
+    this.menuCtrl.enable(false);
   }
 
   logarConf(req){

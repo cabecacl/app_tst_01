@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ItemSliding, Platform, MenuController } from 'ionic-angular';
 
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";
@@ -20,10 +20,10 @@ export class SolicitacoesComprasPage {
   plataforma : Platform;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
-      public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao ) {
+      public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao, public menuCtrl :MenuController ) {
 
       this.plataforma = platform;
-      console.log('Construtor:' + this.listaSolicitacoes);
+      this.menuCtrl.enable(true);
   }
 
 ionViewDidLoad() {
