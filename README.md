@@ -14,6 +14,9 @@ OBS: O seu ambiente de desenvolvimento deve esta instalado(nodejs, npm, ionic e 
  - cd app_tst_01: entre na pasta
  - npm install: instale as dependencias de construçao
  - ionic serve: inicie o app em seu browser
+ - ionic platform add android
  - ionic plugin add cordova-sqlite-storage
+ - cordova plugin add cordova-plugin-network-information
+ - cordova plugin add cordova-plugin-whitelist
 
 Tenha um otimo estudo
