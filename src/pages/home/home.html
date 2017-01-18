@@ -16,28 +16,59 @@
   <!-- </ion-navbar>
 </ion-header> -->
 
-<ion-content padding class="getStart">
+<ion-content class="getStart">
   <ion-buttons start right>
     <button ion-button outline top small (click) = "abrirConfCliente()">
       <ion-icon name="construct" ></ion-icon>
     </button>
   </ion-buttons>
 
-      <h2>MV - TST APRV</h2>
 
-          <form #login = "ngForm" (ngSubmit) = "logarConf(login)">
-              <ion-list>
-                  <ion-item>
-                      <ion-label floating>Usuário</ion-label>
-                      <ion-input type="text" name="usuario" ngModel #usuario="ngModel"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                      <ion-label floating>Senha</ion-label>
-                      <ion-input type="password" name="senha" ngModel #senha="ngModel"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                      <button [disabled]="login.invalid" ion-button full block color="danger">Manter Dados</button>
-                  </ion-item>
-              </ion-list>
+      <img src="assets/img/topo_login.png"/>
+
+
+      <ion-toolbar color="primary" style="margin-top:-5px !important;height:5%">
+        <ion-title>
+            <p>Entrar</p>
+        </ion-title>
+      </ion-toolbar>
+
+          <form padding #login = "ngForm" (ngSubmit) = "logarConf(login)">
+
+            <ion-grid>
+              <ion-row>
+                <ion-col width-10><ion-icon ios="ios-person" md="md-person" color="gray" style="font-size:30px;"></ion-icon></ion-col>
+                <ion-col width-90><ion-input type="text" name="usuario" ngModel #usuario="ngModel" placeholder="Digite seu nome de usuário"></ion-input></ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col width-10><ion-icon ios="ios-key" md="md-key" color="gray" style="font-size:30px;"></ion-icon></ion-col>
+                <ion-input type="password" name="senha" ngModel #senha="ngModel" placeholder="Digite sua senha"></ion-input>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col style="padding:0 30px 0 30px;">
+                  <button [disabled]="login.invalid" ion-button large block color="primary">Entrar</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+
+            <ion-item center>
+              <ion-label>Lembrar meu usuário e senha</ion-label>
+              <ion-checkbox></ion-checkbox>
+            </ion-item>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col><button ion-button class="register-btn" block clear>Esqueci minha senha</button></ion-col>
+              </ion-row>
+            </ion-grid>
+
+
           </form>
 </ion-content>
