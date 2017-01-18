@@ -15,3 +15,13 @@ page-home {
    //background-image: url("../../assets/img/topo_login.png");
 
 }
+.toast-sucesso {
+  > div{
+       background-color:green!important;
+   }
+}
+.toast-falha {
+  > div{
+       background-color:red!important;
+   }
+}

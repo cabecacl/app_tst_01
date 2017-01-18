@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, ToastController, ModalController } from 'ionic-angular';
 
 import { ConfClientePage } from '../confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../solicitacoes-compras/solicitacoes-compras';
@@ -18,37 +18,31 @@ export class HomePage {
   optionsBoxOpen: boolean;
   optionsBoxData: any;
 
-  constructor(public navCtrl: NavController, private alertController: AlertController, private modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private modalCtrl: ModalController) {
 
   }
 
   logarConf(req){
-    if (req.value != null) {
+      if (req.value != null) {
 
-      if(req.value.senha == this.senha && req.value.usuario == this.usuario){
-        let alert = this.alertController.create();
-        alert.setTitle('Usuario logado com sucesso!');
-        alert.addButton({
-          text: 'OK'
-        });
-        alert.present();
-        console.log("Usuario validado com sucesso!");
+        if(req.value.senha == this.senha && req.value.usuario == this.usuario){
 
-        this.navCtrl.push(SolicitacoesComprasPage);
+          this.presentToast('Usuario logado com sucesso!', true);
 
+          console.log("Usuario validado com sucesso!");
+
+          this.navCtrl.push(SolicitacoesComprasPage);
+
+        }else{
+
+          this.presentToast('Usuario Invalido!', false);
+
+          console.log("Usuario Invalido!");
+        }
       }else{
-        let alert = this.alertController.create();
-        alert.setTitle('Usuario Invalido!');
-        alert.addButton({
-          text: 'OK'
-        });
-        alert.present();
-        console.log("Usuario Invalido!");
+          console.log("Nenhum registro para validação!!!");
       }
-    }else{
-        console.log("Nenhum registro para validação!!!");
     }
-  }
 
   criarAlert(texto){
 
@@ -63,5 +57,18 @@ export class HomePage {
 
     modal.present();
   }
+
+  /**
+* Metodo utilizado para exibir o alerta na parte inferiro da tela ao
+* aprovar ou rejeitar uma solicitação
+*/
+ presentToast(mensagem: string, sucesso : boolean) {
+   let toast = this.toastCtrl.create({
+     message: mensagem,
+     duration: 2000,
+     cssClass: sucesso ? "toast-sucesso" : "toast-falha"
+   });
+   toast.present();
+ }
 
 }
