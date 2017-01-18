@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform, MenuController } from 'ionic-angular';
-
+import { NavController, NavParams, ToastController, ItemSliding, Platform, LoadingController, MenuController  } from 'ionic-angular';
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
@@ -18,15 +17,18 @@ export class SolicitacoesComprasPage {
   listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
   mostrarCheck: boolean = false;
   plataforma : Platform;
+  loader : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
-      public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao, public menuCtrl :MenuController ) {
+      public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao, public menuCtrl :MenuController,
+      private loadCtrl : LoadingController ) {
 
       this.plataforma = platform;
       this.menuCtrl.enable(true);
   }
 
 ionViewDidLoad() {
+  this.abrirLoading();
   this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
   this.buscarSolicitacoes();
   console.log('ionViewDidLoad ModalContasPage');
@@ -62,21 +64,6 @@ ionViewDidLoad() {
   */
   buscarSolicitacoes(){
 
-    //this.listaSolicitacoes = this.daoSolicitacoes.getList();
-
-  //    this.solicitacoesService.buscarSolicitacoes().subscribe(
-    //      data => {
-    //          this.listaSolicitacoes = data;
-    //      },
-    //      err => {
-    //          console.log(err);
-    //      },
-    //      () => console.log('Busca realizada com sucesso')
-    //  );
-    // this.listaSolicitacoes = this.daoSolicitacoes.getList();
-
-    // let listaRetornoService = new Array<SolicCompra>();
-
       this.solicitacoesService.buscarSolicitacoes().subscribe(
          data => {
              this.listaSolicitacoes = data;
@@ -108,6 +95,7 @@ ionViewDidLoad() {
 
            console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
 
+           this.fecharLoading();
          });
 
 
@@ -157,6 +145,17 @@ ionViewDidLoad() {
     sol.checado =false;
     this.daoSolicitacoes.inserir(sol);
     this.listaSolicitacoes = this.daoSolicitacoes.getList();
+  }
+
+  abrirLoading(){
+    this.loader = this.loadCtrl.create({
+      content: "Sincronizando..."
+    });
+    this.loader.present();
+  }
+
+  fecharLoading(){
+    this.loader.dismiss();
   }
 
 }
