@@ -148,4 +148,15 @@ ionViewDidLoad() {
      console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
   }
 
+  inserir(){
+    let sol = new SolicCompra();
+    sol.cd_sol_com = '999';
+    sol.dt_sol_com = '12/12/2019';
+    sol.tp_situacao ='S';
+    sol.vl_total = '8888';
+    sol.checado =false;
+    this.daoSolicitacoes.inserir(sol);
+    this.listaSolicitacoes = this.daoSolicitacoes.getList();
+  }
+
 }

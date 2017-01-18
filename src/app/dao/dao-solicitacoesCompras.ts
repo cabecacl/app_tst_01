@@ -59,7 +59,7 @@ export class DAOSolicitacoesCompras{
         console.log('Entrou no inserir');
         // this.database.executeSql("INSERT INTO solicCompra (cd_sol_com, dt_sol_com, tp_situacao,vl_total) VALUES ('10', '12/12/2018', 'A', '12345')", []).then((data) => {
         this.database.executeSql("INSERT INTO solicCompra (cd_sol_com, dt_sol_com, tp_situacao,vl_total) VALUES (?, ?, ?, ?)",
-            [solicitacao.dt_sol_com, solicitacao.dt_sol_com, solicitacao.tp_situacao, solicitacao.vl_total]).then((data) => {
+            [solicitacao.cd_sol_com, solicitacao.dt_sol_com, solicitacao.tp_situacao, solicitacao.vl_total]).then((data) => {
             console.log("INSERIDO: " + JSON.stringify(data));
         }, (error) => {
             console.log("ERROR: " + JSON.stringify(error.err));
