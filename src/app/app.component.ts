@@ -6,7 +6,7 @@ import { StatusBar, Splashscreen, SQLite } from 'ionic-native';
 import { HomePage } from '../pages/home/home';
 import { ConfClientePage } from '../pages/confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../pages/solicitacoes-compras/solicitacoes-compras';
-
+import { DetalhamentoSolicitacaoPage } from '../pages/detalhamento-solicitacao/detalhamento-solicitacao';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,8 +17,8 @@ export class MyApp {
   // confCliente : any;
   solicitacoesCompras : any;
 
-    //  rootPage = HomePage;
-   rootPage = SolicitacoesComprasPage;
+    rootPage = HomePage;
+  // rootPage = SolicitacoesComprasPage;
   // rootPage = ConfClientePage;
 
   constructor(platform: Platform) {
