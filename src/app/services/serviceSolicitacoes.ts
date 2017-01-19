@@ -1,4 +1,4 @@
-import {Http, URLSearchParams, Headers} from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 

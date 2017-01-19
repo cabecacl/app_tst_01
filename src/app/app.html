@@ -17,12 +17,12 @@
 
        <ion-item>
          <ion-icon name="checkmark" style="font-size:30px" color="gray" item-left></ion-icon>
-         <button ion-item menuClose class="botao-menu">Solicitações aprovadas</button>
+         <button ion-item (click)="openPage(solicitacoesAprovadas)" menuClose class="botao-menu">Solicitações aprovadas</button>
        </ion-item>
 
         <ion-item>
           <ion-icon name="close" style="font-size:30px" color="gray" item-left></ion-icon>
-          <button ion-item menuClose class="botao-menu">Solicitações rejeitadas</button>
+          <button ion-item (click)="openPage(solicitacoesRejeitadas)" menuClose class="botao-menu">Solicitações rejeitadas</button>
         </ion-item>
 
 

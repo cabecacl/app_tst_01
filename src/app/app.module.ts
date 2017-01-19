@@ -8,6 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { ConfClientePage } from '../pages/confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../pages/solicitacoes-compras/solicitacoes-compras';
 import { DetalhamentoSolicitacaoPage } from '../pages/detalhamento-solicitacao/detalhamento-solicitacao';
+import { SolicitacoesRejeitadasPage } from "../pages/solicitacoes-rejeitadas/solicitacoes-rejeitadas";
+import { SolicitacoesAprovadasPage } from "../pages/solicitacoes-aprovadas/solicitacoes-aprovadas";
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { DetalhamentoSolicitacaoPage } from '../pages/detalhamento-solicitacao/d
     HomePage,
     ConfClientePage,
     SolicitacoesComprasPage,
-    DetalhamentoSolicitacaoPage
+    DetalhamentoSolicitacaoPage,
+    SolicitacoesRejeitadasPage,
+    SolicitacoesAprovadasPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +30,9 @@ import { DetalhamentoSolicitacaoPage } from '../pages/detalhamento-solicitacao/d
     HomePage,
     ConfClientePage,
     SolicitacoesComprasPage,
-    DetalhamentoSolicitacaoPage
+    DetalhamentoSolicitacaoPage,
+    SolicitacoesRejeitadasPage,
+    SolicitacoesAprovadasPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
