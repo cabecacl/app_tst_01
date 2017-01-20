@@ -17,15 +17,17 @@ export class DetalhamentoSolicitacaoPage {
   public solicitacao:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private solicitacoesService:ServiceSolicitacao) {
     this.solicitacao = navParams.get("solicitacao");
-    this.solicitacoesService.buscarDetalhesSolicitacao(this.solicitacao.cd_sol_com).subscribe(
-        data => {
-            this.solicitacao = data;
-        },
-        err => {
-            console.log(err);
-        },
-        () => console.log('Detalhamento realizado com sucesso')
-    );;
+    
+
+    // this.solicitacoesService.buscarDetalhesSolicitacao(this.solicitacao.cd_sol_com).subscribe(
+    //     data => {
+    //         this.solicitacao = data;
+    //     },
+    //     err => {
+    //         console.log(err);
+    //     },
+    //     () => console.log('Detalhamento realizado com sucesso')
+    // );;
   }
 
   ionViewDidLoad() {

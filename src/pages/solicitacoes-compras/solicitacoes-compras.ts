@@ -29,7 +29,7 @@ export class SolicitacoesComprasPage {
 
 ionViewDidLoad() {
   this.abrirLoading();
-  this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
+  //this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
   this.buscarSolicitacoes();
   console.log('ionViewDidLoad ModalContasPage');
 }
@@ -64,39 +64,90 @@ ionViewDidLoad() {
   */
   buscarSolicitacoes(){
 
-      this.solicitacoesService.buscarSolicitacoes().subscribe(
-         data => {
-             this.listaSolicitacoes = data;
-             console.log(data.value);
-         },
-         err => {
-             console.log(err);
-         },
-         () => {console.log('Itens recuperados');
+    let sol = new SolicCompra();
+    sol.cd_sol_com = '111';
+    sol.dt_sol_com = '12/12/2019';
+    sol.tp_situacao ='S';
+    sol.vl_total = '8888,45';
+    sol.checado =false;
+    sol.nm_solicitante = 'Bruno';
+    sol.dt_maxima = '01/01/2020';
+    sol.ds_mot_ped = 'Reposição de estoque';
+    sol.nm_setor = 'Farmácia';
+    sol.cd_estoque = 1;
+    sol.qtd_itens = 2;
+    this.listaSolicitacoes.push(sol);
 
-           if(this.listaSolicitacoes.length > 0){
+    // this.daoSolicitacoes.inserir(sol);
 
-             for (let item of this.listaSolicitacoes){
+    sol = new SolicCompra();
+    sol.cd_sol_com = '222';
+    sol.dt_sol_com = '13/11/2019';
+    sol.tp_situacao ='O';
+    sol.vl_total = '777,00';
+    sol.checado =false;
+    sol.nm_solicitante = 'Paulo';
+    sol.dt_maxima = '01/01/2020';
+    sol.ds_mot_ped = 'Compra de urgência';
+    sol.nm_setor = 'Recepção';
+    sol.cd_estoque = 12;
+    sol.qtd_itens = 2;
 
-               let solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
+    this.listaSolicitacoes.push(sol);
+    // this.daoSolicitacoes.inserir(sol);
 
-               if(solRec == null){
-                 this.daoSolicitacoes.inserir(item);
-               }else{
-                 this.daoSolicitacoes.editar(item);
-               }
-               console.log('Inseriu item:' + item.cd_sol_com);
-             }
+    sol = new SolicCompra();
+    sol.cd_sol_com = '333';
+    sol.dt_sol_com = '18/12/2019';
+    sol.tp_situacao ='S';
+    sol.vl_total = '0112,00';
+    sol.checado =false;
+    sol.nm_solicitante = 'Jean';
+    sol.dt_maxima = '01/01/2020';
+    sol.ds_mot_ped = 'Solicitação interna';
+    sol.nm_setor = 'Farmácia';
+    sol.cd_estoque = 11;
+    sol.qtd_itens = 2;
 
-             console.log("atualizou dados:" + this.listaSolicitacoes.length);
+    this.listaSolicitacoes.push(sol);
+    // this.daoSolicitacoes.inserir(sol)
 
-             this.listaSolicitacoes = this.daoSolicitacoes.getList();
-           }
+    // this.listaSolicitacoes = this.daoSolicitacoes.getList();
 
-           console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
 
-           this.fecharLoading();
-         });
+      // this.solicitacoesService.buscarSolicitacoes().subscribe(
+      //    data => {
+      //        this.listaSolicitacoes = data;
+      //        console.log(data.value);
+      //    },
+      //    err => {
+      //        console.log(err);
+      //    },
+      //    () => {console.log('Itens recuperados');
+      //
+      //      if(this.listaSolicitacoes.length > 0){
+      //
+      //        for (let item of this.listaSolicitacoes){
+      //
+      //          let solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
+      //
+      //          if(solRec == null){
+      //            this.daoSolicitacoes.inserir(item);
+      //          }else{
+      //            this.daoSolicitacoes.editar(item);
+      //          }
+      //          console.log('Inseriu item:' + item.cd_sol_com);
+      //        }
+      //
+      //        console.log("atualizou dados:" + this.listaSolicitacoes.length);
+      //
+      //        this.listaSolicitacoes = this.daoSolicitacoes.getList();
+      //      }
+      //
+      //      console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
+      //
+      //      this.fecharLoading();
+      //    });
 
 
   }
@@ -132,7 +183,7 @@ ionViewDidLoad() {
   }
 
   consultar(){
-     this.listaSolicitacoes = this.daoSolicitacoes.getList();
+    //  this.listaSolicitacoes = this.daoSolicitacoes.getList();
      console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
   }
 
@@ -143,13 +194,14 @@ ionViewDidLoad() {
     sol.tp_situacao ='S';
     sol.vl_total = '8888';
     sol.checado =false;
-    this.daoSolicitacoes.inserir(sol);
-    this.listaSolicitacoes = this.daoSolicitacoes.getList();
+    // this.daoSolicitacoes.inserir(sol);
+    // this.listaSolicitacoes = this.daoSolicitacoes.getList();
   }
 
   abrirLoading(){
     this.loader = this.loadCtrl.create({
-      content: "Sincronizando..."
+      content: "Sincronizando...",
+      duration: 3000
     });
     this.loader.present();
   }

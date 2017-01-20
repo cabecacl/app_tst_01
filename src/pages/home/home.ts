@@ -14,8 +14,8 @@ import { SolicitacoesComprasPage } from '../solicitacoes-compras/solicitacoes-co
 export class HomePage {
 
   login : any = {};
-  usuario: string = "MV";
-  senha: string = "MV12345";
+  usuario: string = "1";
+  senha: string = "1";
   optionsBoxOpen: boolean;
   optionsBoxData: any;
 

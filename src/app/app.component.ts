@@ -24,7 +24,7 @@ export class MyApp {
   // rootPage = ConfClientePage;
 
   constructor(platform: Platform) {
-    this.home = SolicitacoesComprasPage;
+    this.home = HomePage;
     //this.confCliente = ConfClientePage;
     this.solicitacoesCompras = SolicitacoesComprasPage;
     this.solicitacoesRejeitadas = SolicitacoesRejeitadasPage;
