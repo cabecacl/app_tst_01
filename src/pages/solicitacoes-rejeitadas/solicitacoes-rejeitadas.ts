@@ -26,7 +26,7 @@ export class SolicitacoesRejeitadasPage {
   }
 
   ionViewDidLoad() {
-    this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
+    //this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
     this.buscarSolicitacoes();
   }
 
