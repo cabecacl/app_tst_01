@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform, LoadingController, MenuController, AlertController  } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ItemSliding, Platform, LoadingController, MenuController  } from 'ionic-angular';
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
@@ -18,11 +18,10 @@ export class SolicitacoesComprasPage {
   mostrarCheck: boolean = false;
   plataforma : Platform;
   loader : any;
-  solRec : SolicCompra = new SolicCompra();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
       public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao, public menuCtrl :MenuController,
-      private loadCtrl : LoadingController, private alertCtrl : AlertController ) {
+      private loadCtrl : LoadingController ) {
 
       this.plataforma = platform;
       this.menuCtrl.enable(true);
@@ -30,7 +29,7 @@ export class SolicitacoesComprasPage {
 
 ionViewDidLoad() {
   this.abrirLoading();
-  this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma, this.alertCtrl);
+  this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
   this.buscarSolicitacoes();
   console.log('ionViewDidLoad ModalContasPage');
 }
@@ -78,17 +77,12 @@ ionViewDidLoad() {
            if(this.listaSolicitacoes.length > 0){
 
              for (let item of this.listaSolicitacoes){
-              //  this.showAlert("Consultado: " +item.cd_sol_com);
 
-               this.solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
+               let solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
 
-              //  this.showAlert("Solicitacao recuperada:" +this.solRec);
-
-               if(this.solRec == null){
-                 this.showAlert('Inserindo Item:' + item.cd_sol_com);
+               if(solRec == null){
                  this.daoSolicitacoes.inserir(item);
                }else{
-                 this.showAlert('Editando item:' + this.solRec.cd_sol_com);
                  this.daoSolicitacoes.editar(item);
                }
                console.log('Inseriu item:' + item.cd_sol_com);
@@ -164,12 +158,4 @@ ionViewDidLoad() {
     this.loader.dismiss();
   }
 
-
-  showAlert(texto : string) {
-    let alert = this.alertCtrl.create({
-      subTitle: texto,
-      buttons: ['FECHAR']
-    });
-    alert.present();
-  }
 }

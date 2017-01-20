@@ -1,5 +1,5 @@
 import { SQLite } from "ionic-native";
-import { Platform , AlertController} from 'ionic-angular';
+import { Platform} from 'ionic-angular';
 
 import { SolicCompra } from "../../model/solicCompra";
 
@@ -10,7 +10,7 @@ export class DAOSolicitacoesCompras{
     database: SQLite;
     plataforma : Platform;
 
-    constructor(private platform: Platform, private alertCtrl : AlertController){
+    constructor(private platform: Platform){
 
       this.plataforma = platform;
 
@@ -83,12 +83,10 @@ export class DAOSolicitacoesCompras{
 
       let lista : Array<SolicCompra> = this.getList();
 
-      this.showAlert("DAO Retorno GetList: " +lista.length);
 
       for(var i = 0; i < lista.length; i++) {
 
         if(lista[i].cd_sol_com.localeCompare(valor)){
-          this.showAlert("DAO item encontrado: " +lista[i].cd_sol_com + ' Do valor passado: ' + valor);
           return lista[i];
         }
       }
@@ -142,14 +140,5 @@ export class DAOSolicitacoesCompras{
 
     delete(conta){
 
-    }
-
-
-    showAlert(texto : string) {
-      let alert = this.alertCtrl.create({
-        subTitle: texto,
-        buttons: ['FECHAR']
-      });
-      alert.present();
     }
 }

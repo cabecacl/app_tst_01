@@ -12,7 +12,7 @@
 
        <ion-item>
           <ion-icon ios="ios-home" md="md-home" style="font-size:30px" color="gray" item-left></ion-icon>
-          <button ion-item (click)="openPage(home)" class="botao-menu" menuClose >Início</button>
+          <button ion-item (click)="openPage(solicitacoesCompras)" class="botao-menu" menuClose >Início</button>
        </ion-item>
 
        <ion-item>
@@ -34,7 +34,7 @@
 
         <ion-item>
           <ion-icon ios="ios-log-out" md="md-log-out" style="font-size:30px" color="gray" item-left></ion-icon>
-          <button ion-item menuClose class="botao-menu">Sair</button>
+          <button ion-item (click)="openPage(home)" menuClose class="botao-menu">Sair</button>
         </ion-item>
 
     </ion-list>
