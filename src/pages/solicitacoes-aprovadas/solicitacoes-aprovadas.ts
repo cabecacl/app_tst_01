@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
-import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
+import { DaoSolCompras } from '../../providers/dao-sol-compras';
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
 
@@ -13,56 +13,31 @@ import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
 @Component({
   selector: 'page-solicitacoes-aprovadas',
   templateUrl: 'solicitacoes-aprovadas.html',
-  providers : [ServiceSolicitacao]
+  providers : [ServiceSolicitacao, DaoSolCompras]
 })
 export class SolicitacoesAprovadasPage {
 
-  daoSolicitacoes : DAOSolicitacoesCompras;
   listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
   plataforma : Platform;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,private solicitacoesService : ServiceSolicitacao) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
+              private solicitacoesService : ServiceSolicitacao, private daoSolicitacoes : DaoSolCompras) {
     this.plataforma = platform;
   }
 
   ionViewDidLoad() {
-    this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
-    this.buscarSolicitacoes();
+    // this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
+    this.getSolicitacoesAprovadas();
   }
 
-  buscarSolicitacoes(){
-
-      this.solicitacoesService.buscarSolicitacoes().subscribe(
-         data => {
-             this.listaSolicitacoes = data;
-             console.log(data.value);
-         },
-         err => {
-             console.log(err);
-         },
-         () => {console.log('Itens recuperados');
-
-           if(this.listaSolicitacoes.length > 0){
-
-             for (let item of this.listaSolicitacoes){
-
-               let solRec = this.daoSolicitacoes.recuperarSolicitacao(item.cd_sol_com);
-
-               if(solRec == null){
-                 this.daoSolicitacoes.inserir(item);
-               }else{
-                 this.daoSolicitacoes.editar(item);
-               }
-               console.log('Inseriu item:' + item.cd_sol_com);
-             }
-
-             console.log("atualizou dados:" + this.listaSolicitacoes.length);
-
-             this.listaSolicitacoes = this.daoSolicitacoes.getList();
-           }
-
-           console.log('Busca realizada com sucesso: ' + this.listaSolicitacoes.length);
-
-         });
-     }
+  /**
+  * Metodo utilizado para recuperar dados da base e atualizar a lista em tela
+  */
+  getSolicitacoesAprovadas(){
+    this.daoSolicitacoes.getSolicitacoesAprovadas().then((result) => {
+      this.listaSolicitacoes = <Array<SolicCompra>> result;
+    }, (error) => {
+        console.log("ERROR: ", error);
+    });
+  }
 }
