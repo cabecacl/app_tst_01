@@ -5,6 +5,7 @@ import { NavController, ToastController, ModalController, MenuController } from 
 
 import { ConfClientePage } from '../confCliente/confCliente';
 import { SolicitacoesComprasPage } from '../solicitacoes-compras/solicitacoes-compras';
+import { HomeGraficoPage } from '../home-grafico/home-grafico';
 
 
 @Component({
@@ -34,7 +35,7 @@ constructor(public navCtrl: NavController, private toastCtrl: ToastController, p
 
           console.log("Usuario validado com sucesso!");
 
-          this.navCtrl.push(SolicitacoesComprasPage);
+          this.navCtrl.push(HomeGraficoPage);
 
         }else{
 

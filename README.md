@@ -19,5 +19,8 @@ OBS: O seu ambiente de desenvolvimento deve esta instalado(nodejs, npm, ionic e 
  - ionic plugin add cordova-sqlite-storage
  - cordova plugin add cordova-plugin-network-information
  - cordova plugin add cordova-plugin-whitelist
+ - npm install chart.js --save
+ - npm install ng2-charts --save
+
 
 Tenha um otimo estudo

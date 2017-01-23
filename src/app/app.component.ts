@@ -4,8 +4,11 @@ import { StatusBar, Splashscreen, SQLite } from 'ionic-native';
 // import { Storage} from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
+
 import { SolicitacoesComprasPage } from '../pages/solicitacoes-compras/solicitacoes-compras';
 import { SolicitacoesRejeitadasPage } from "../pages/solicitacoes-rejeitadas/solicitacoes-rejeitadas";
+import { HomeGraficoPage } from '../pages/home-grafico/home-grafico';
+
 import { SolicitacoesAprovadasPage } from "../pages/solicitacoes-aprovadas/solicitacoes-aprovadas";
 
 @Component({
@@ -18,10 +21,11 @@ export class MyApp {
   solicitacoesCompras : any;
   solicitacoesRejeitadas: any;
   solicitacoesAprovadas: any;
-
-    rootPage = HomePage;
+  homeGraficoPage: any;
+  rootPage = HomePage;
   // rootPage = SolicitacoesComprasPage;
   // rootPage = ConfClientePage;
+  //rootPage = HomeGraficoPage;
 
   constructor(platform: Platform) {
     this.home = HomePage;
@@ -29,7 +33,7 @@ export class MyApp {
     this.solicitacoesCompras = SolicitacoesComprasPage;
     this.solicitacoesRejeitadas = SolicitacoesRejeitadasPage;
     this.solicitacoesAprovadas = SolicitacoesAprovadasPage;
-
+    this.homeGraficoPage = HomeGraficoPage;
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
