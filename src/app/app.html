@@ -1,5 +1,4 @@
-<ion-menu [content]="menu" >
-
+<!-- <ion-menu [content]="menu" >
   <ion-content>
     <img src="assets/img/topo_login_s_marca.png"/>
     <ion-toolbar color="primary" style="margin-top:-5px !important;height:5%">
@@ -7,39 +6,29 @@
           <p>MV Compras</p>
       </ion-title>
     </ion-toolbar>
-
     <ion-list no-lines>
-
        <ion-item>
           <ion-icon ios="ios-home" md="md-home" style="font-size:30px" color="gray" item-left></ion-icon>
           <button ion-item (click)="openPage(solicitacoesCompras)" class="botao-menu" menuClose >Início</button>
        </ion-item>
-
        <ion-item>
          <ion-icon name="checkmark" style="font-size:30px" color="gray" item-left></ion-icon>
          <button ion-item (click)="openPage(solicitacoesAprovadas)" menuClose class="botao-menu">Solicitações aprovadas</button>
        </ion-item>
-
         <ion-item>
           <ion-icon name="close" style="font-size:30px" color="gray" item-left></ion-icon>
           <button ion-item (click)="openPage(solicitacoesRejeitadas)" menuClose class="botao-menu">Solicitações rejeitadas</button>
         </ion-item>
-
-
-
          <ion-item style="border-top:1px solid gray !important;">
            <ion-icon ios="ios-help-circle" md="md-help-circle" style="font-size:30px" color="gray" item-left></ion-icon>
            <button ion-item menuClose class="botao-menu">Ajuda</button>
          </ion-item>
-
         <ion-item>
           <ion-icon ios="ios-log-out" md="md-log-out" style="font-size:30px" color="gray" item-left></ion-icon>
           <button ion-item (click)="openPage(home)" menuClose class="botao-menu">Sair</button>
         </ion-item>
-
     </ion-list>
-
   </ion-content>
-</ion-menu>
+</ion-menu> -->
 
 <ion-nav #menu [root]="rootPage"></ion-nav>

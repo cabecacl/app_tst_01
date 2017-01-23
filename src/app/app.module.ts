@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { DaoSolCompras } from "../providers/dao-sol-compras";
 // import { Storage } from '@ionic/storage';
 // import { SQLite } from 'ionic-native';
 
@@ -40,6 +41,6 @@ import '../../node_modules/chart.js/dist/Chart.bundle.min.js';
     SolicitacoesAprovadasPage,
     HomeGraficoPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, DaoSolCompras]
 })
 export class AppModule {}
