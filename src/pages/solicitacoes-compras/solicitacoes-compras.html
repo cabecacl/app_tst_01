@@ -6,14 +6,16 @@
 -->
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>{{listaSolicitacoes.length}} Solicitacões abertas</ion-title>
-    <button ion-button menuToggle>
+  <!-- <ion-title>{{listaSolicitacoes.length}} Solicitacões abertas</ion-title> -->
+    <!-- <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </button> -->
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
   <ion-list (press)="mostrarSelecionarTodos()">
 
     <ion-item-sliding #slidingItem *ngFor="let item of listaSolicitacoes" >

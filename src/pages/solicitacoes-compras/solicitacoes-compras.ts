@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgModule} from '@angular/core';
 import { NavController, NavParams, ToastController, ItemSliding, Platform, LoadingController, MenuController  } from 'ionic-angular';
 import { DAOSolicitacoesCompras } from '../../app/dao/dao-solicitacoesCompras';
 import { SolicCompra } from "../../model/solicCompra";

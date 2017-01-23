@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgModule} from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen, SQLite } from 'ionic-native';
 // import { Storage} from '@ionic/storage';
