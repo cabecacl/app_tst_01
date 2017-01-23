@@ -7,13 +7,15 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>{{listaSolicitacoes.length}} Solicitacões abertas</ion-title>
-    <button ion-button menuToggle>
+    <!--<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </button> -->
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
   <ion-list (press)="mostrarSelecionarTodos()">
 
     <ion-item-sliding #slidingItem *ngFor="let item of listaSolicitacoes" >
@@ -32,7 +34,7 @@
 
                 <template [ngIf]="!item.checado" center>
                   <button ion-fab color="light" outline (click)="checarItem(item)">
-                    <!-- <ion-icon name="checkmark"></ion-icon> -->
+
                   </button>
                 </template>
 
@@ -59,11 +61,6 @@
               </template>
 
 
-
-
-
-              <!-- <button *ngIf="{{item.tp_situacao}} = 'R'" ion-fab color="danger"></button>
-              <button *ngIf="{{item.tp_situacao}} = 'A'" ion-fab ></button> -->
 
             </ion-col>
             <ion-col width-40 (click)='exibirDetalhes(item);'>

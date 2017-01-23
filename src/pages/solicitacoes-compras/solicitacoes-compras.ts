@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform, LoadingController, MenuController, AlertController  } from 'ionic-angular';
+import { Component} from '@angular/core';
+import { NavController, NavParams, ToastController, ItemSliding, Platform, Loading ,LoadingController, MenuController, AlertController  } from 'ionic-angular';
 import { DaoSolCompras } from '../../providers/dao-sol-compras';
+
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
 import { DetalhamentoSolicitacaoPage } from "../detalhamento-solicitacao/detalhamento-solicitacao";
@@ -20,7 +21,7 @@ export class SolicitacoesComprasPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private platform: Platform,
       public toastCtrl: ToastController, private solicitacoesService : ServiceSolicitacao, public menuCtrl :MenuController,
-      private loadCtrl : LoadingController, private alertCtrl : AlertController, private daoSolicitacoes : DaoSolCompras ) {
+      public loadCtrl : LoadingController, private alertCtrl : AlertController, private daoSolicitacoes : DaoSolCompras ) {
 
       this.plataforma = platform;
       this.menuCtrl.enable(true);
@@ -103,10 +104,11 @@ export class SolicitacoesComprasPage {
              }
           // Após atualizar os registros atualizar a lista
              this.consultar();
-             this.fecharLoading();
+             
            }
            this.fecharLoading();
          });
+
   }
 
 /**
