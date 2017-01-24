@@ -29,7 +29,6 @@ export class SolicitacoesComprasPage {
   }
 
 ionViewDidLoad() {
-  this.abrirLoading();
   //this.daoSolicitacoes = new DAOSolicitacoesCompras(this.plataforma);
   this.buscarSolicitacoes();
   console.log('ionViewDidLoad ModalContasPage');

@@ -14,10 +14,11 @@ import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
   providers: [ServiceSolicitacao]
 })
 export class DetalhamentoSolicitacaoPage {
+  solicitacoes:string = "solicitacao";
   public solicitacao:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private solicitacoesService:ServiceSolicitacao) {
     this.solicitacao = navParams.get("solicitacao");
-    
+
 
     // this.solicitacoesService.buscarDetalhesSolicitacao(this.solicitacao.cd_sol_com).subscribe(
     //     data => {
