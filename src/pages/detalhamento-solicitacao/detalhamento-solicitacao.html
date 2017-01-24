@@ -13,13 +13,13 @@
 
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="detalheSolicitacao">
-      <ion-segment-button value="Solicitação">
+      <ion-segment-button value="solicitacao">
         Solicitação
       </ion-segment-button>
-      <ion-segment-button value="Itens">
+      <ion-segment-button value="itens">
         Itens
       </ion-segment-button>
-      <ion-segment-button value="Títulos">
+      <ion-segment-button value="titulos">
         Títulos
       </ion-segment-button>
     </ion-segment>
@@ -28,74 +28,27 @@
 
 
 <ion-content>
-  <div [ngSwitch]="pet">
+  <div [ngSwitch]="solicitacao">
 
-    <ion-list *ngSwitchCase="'Solicitação'">
+    <ion-list *ngSwitchCase="'solicitacao'">
       <ion-item-divider color="light">Dados da solicitação</ion-item-divider>
-      <ion-item>Qtd de itens<p item-right>02</p></ion-item>
       <ion-item>Data de abertura<p item-right>{{solicitacao.dt_sol_com}}</p></ion-item>
       <ion-item>Data máxima para aprovar<p item-right>{{solicitacao.dt_maxima}}</p></ion-item>
       <ion-item>Setor<p item-right>{{solicitacao.nm_setor}}</p></ion-item>
       <ion-item>Solicitante<p item-right>{{solicitacao.nm_solicitante}}</p></ion-item>
       <ion-item>Estoque<p item-right>{{solicitacao.cd_estoque}}</p></ion-item>
       <ion-item>Motivo do pedido<p item-right>{{solicitacao.ds_mot_ped}}</p></ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'itens'">
+      <ion-item>Qtd de itens<p item-right>02</p></ion-item>
       <ion-item-divider color="light">Lista de itens</ion-item-divider>
       <ion-item>Item 1<p item-right>1 unidade</ion-item>
       <ion-item>Item 2<p item-right>1 caixa</p></ion-item>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'Itens'">
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-kitten-3.jpg">
-        </ion-thumbnail>
-        <h2>Milo</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-kitten-4.jpg">
-        </ion-thumbnail>
-        <h2>Bandit</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-kitten-2.jpg">
-        </ion-thumbnail>
-        <h2>Nala</h2>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'Títulos'">
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-duckling-1.jpg">
-        </ion-thumbnail>
-        <h2>Daffy</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-duckling-2.jpg">
-        </ion-thumbnail>
-        <h2>Huey</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-duckling-3.jpg">
-        </ion-thumbnail>
-        <h2>Dewey</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/img/thumbnail-duckling-4.jpg">
-        </ion-thumbnail>
-        <h2>Louie</h2>
-      </ion-item>
+    <ion-list *ngSwitchCase="'titulos'">
+      
     </ion-list>
   </div>
 

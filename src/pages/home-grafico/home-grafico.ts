@@ -15,10 +15,10 @@ import { SolicitacoesComprasPage } from "../solicitacoes-compras/solicitacoes-co
 export class HomeGraficoPage {
     listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
     tarefaSolicitacaoCompra : number = this.listaSolicitacoes.length ? this.listaSolicitacoes.length : 0;
-    tarefaOrdemCompra : number = 1;
-    tarefaSolicitacaoUrgencia : number = 5;
-    tarefaSugestoes : number = 8;
-    totalTarefas : number = this.tarefaSolicitacaoCompra + this.tarefaOrdemCompra + this.tarefaSolicitacaoUrgencia + this.tarefaSugestoes;
+    tarefaOrdemCompra : number = 0;
+    tarefaSolicitacaoUrgencia : number = 0;
+    tarefaSugestoes : number = 0;
+    totalTarefas : number = 0;
     mostrarCheck: boolean = false;
     plataforma : Platform;
     loader : any;
@@ -165,10 +165,25 @@ export class HomeGraficoPage {
     consultar(){
       this.daoSolicitacoes.getListarTodos().then((result) => {
         this.listaSolicitacoes = <Array<SolicCompra>> result;
+        this.atualizarGrafico();
+        console.log("SIZE: " + this.tarefaSolicitacaoCompra);
       }, (error) => {
           this.showAlert("ERROR: " + error);
           console.log("ERROR: ", error);
       });
+    }
+
+    /**
+    * Método utilizado para atualizar os valores do gráfico
+    */
+
+    atualizarGrafico(){
+      this.tarefaSolicitacaoCompra = this.listaSolicitacoes.length;
+      this.tarefaOrdemCompra  = 1;
+      this.tarefaSolicitacaoUrgencia = 5;
+      this.tarefaSugestoes = 8;
+      this.totalTarefas = this.tarefaSolicitacaoCompra + this.tarefaOrdemCompra + this.tarefaSolicitacaoUrgencia + this.tarefaSugestoes;
+      this.pieChartData = [this.tarefaSolicitacaoCompra, this.tarefaOrdemCompra, this.tarefaSolicitacaoUrgencia, this.tarefaSugestoes];
     }
 
   /**
