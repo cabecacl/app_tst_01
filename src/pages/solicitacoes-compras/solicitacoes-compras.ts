@@ -31,12 +31,12 @@ export class SolicitacoesComprasPage {
 /**
 * Metodo utilizado para realizar a sincronização ao carregar a tela
 */
-  ionViewDidLoad() {
-    this.abrirLoading();
-    this.consultar();
-    this.buscarSolicitacoes();
-    console.log('ionViewDidLoad ModalContasPage');
-  }
+ionViewDidLoad() {
+  this.abrirLoading();
+  this.consultar();
+  this.buscarSolicitacoes();
+  console.log('ionViewDidLoad ModalContasPage');
+}
 
 /**
 * Metodo utilizado pado para aprovar a solicitação de compra
@@ -61,55 +61,6 @@ export class SolicitacoesComprasPage {
     slidingItem.close();
   }
 
-  /**
-  * Metodo utilizado para recuperar as solicitações do Servico e
-  * atualizar o SQLite do equipamento
-  * OBS: TODO: Vai se tornar serviço no futuro
-  */
-  buscarSolicitacoes(){
-
-    let listaServico : SolicCompra[] = new Array<SolicCompra>();
-
-      this.solicitacoesService.buscarSolicitacoes().subscribe(
-         data => {
-             listaServico = data;
-             console.log(data.value);
-         },
-         err => {
-             console.log(err);
-         },
-         () => {console.log('Itens recuperados');
-
-           if(listaServico.length > 0){
-
-             for (let solServ of listaServico){
-
-               let existe : boolean = false;
-
-               for (let sol of this.listaSolicitacoes){
-
-                  if (sol.cd_sol_com == solServ.cd_sol_com){
-                    // this.showAlert('Item Igual: ' + solServ.cd_sol_com);
-                    existe = true;
-                  }
-
-               }
-
-               if(existe){
-                 this.alterSolicitacao(solServ);
-               }else{
-                 this.inserirSolicitacao(solServ);
-               }
-
-             }
-          // Após atualizar os registros atualizar a lista
-             this.consultar();
-             
-           }
-           this.fecharLoading();
-         });
-
-  }
 
 /**
 * Metodo utilizado para mostrar todos os itens com a opção check da esquerda
@@ -140,7 +91,55 @@ export class SolicitacoesComprasPage {
   exibirDetalhes(solicitacao : SolicCompra){
     this.navCtrl.push(DetalhamentoSolicitacaoPage, {solicitacao: solicitacao});
   }
+  /**
+  * Metodo utilizado para recuperar as solicitações do Servico e
+  * atualizar o SQLite do equipamento
+  * OBS: TODO: Vai se tornar serviço no futuro
+  */
+  buscarSolicitacoes(){
 
+    let listaServico : SolicCompra[] = new Array<SolicCompra>();
+
+      this.solicitacoesService.buscarSolicitacoes().subscribe(
+         data => {
+             listaServico = data;
+             console.log(data);
+         },
+         err => {
+             console.log(err);
+         },
+         () => {console.log('Itens recuperados');
+
+           if(listaServico.length > 0){
+
+             for (let solServ of listaServico){
+
+               let existe : boolean = false;
+
+               for (let sol of this.listaSolicitacoes){
+
+                  if (sol.cd_sol_com == solServ.cd_sol_com){
+                    // this.showAlert('Item Igual: ' + solServ.cd_sol_com);
+                    existe = true;
+                  }
+
+               }
+
+               if(existe){
+                 this.alterSolicitacao(solServ);
+               }else{
+                 this.inserirSolicitacao(solServ);
+               }
+
+             }
+          // Após atualizar os registros atualizar a lista
+             this.consultar();
+
+           }
+           this.fecharLoading();
+         });
+
+  }
 /**
 * Metodo utilizado para recuperar dados da base e atualizar a lista em tela
 */

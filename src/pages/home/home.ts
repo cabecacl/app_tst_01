@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-
 import { NavController, ToastController, ModalController, MenuController } from 'ionic-angular';
-
-
 import { ConfClientePage } from '../confCliente/confCliente';
-import { SolicitacoesComprasPage } from '../solicitacoes-compras/solicitacoes-compras';
 import { HomeGraficoPage } from '../home-grafico/home-grafico';
-
 
 @Component({
   selector: 'page-home',
@@ -15,16 +10,15 @@ import { HomeGraficoPage } from '../home-grafico/home-grafico';
 export class HomePage {
 
   login : any = {};
-  usuario: string = "MV";
-  senha: string = "MV12345";
+  usuario: string = "1";
+  senha: string = "1";
   optionsBoxOpen: boolean;
   optionsBoxData: any;
 
-
-constructor(public navCtrl: NavController, private toastCtrl: ToastController, private modalCtrl: ModalController,
-    public menuCtrl: MenuController) {
-    this.menuCtrl.enable(false);
-}
+  constructor(public navCtrl: NavController, private toastCtrl: ToastController, private modalCtrl: ModalController,
+      public menuCtrl: MenuController) {
+      this.menuCtrl.enable(false);
+  }
 
   logarConf(req){
       if (req.value != null) {

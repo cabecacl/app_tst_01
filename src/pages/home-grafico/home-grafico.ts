@@ -1,11 +1,11 @@
 import { Component} from '@angular/core';
-import { NavController, NavParams, ToastController, ItemSliding, Platform, Loading ,LoadingController, MenuController, AlertController  } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ItemSliding, Platform,LoadingController, MenuController, AlertController  } from 'ionic-angular';
 import { DaoSolCompras } from '../../providers/dao-sol-compras';
 
 import { SolicCompra } from "../../model/solicCompra";
 import { ServiceSolicitacao } from "../../app/services/serviceSolicitacoes";
 import { DetalhamentoSolicitacaoPage } from "../detalhamento-solicitacao/detalhamento-solicitacao";
-
+import { SolicitacoesComprasPage } from "../solicitacoes-compras/solicitacoes-compras";
 
 @Component({
   selector: 'page-home-grafico',
@@ -13,8 +13,12 @@ import { DetalhamentoSolicitacaoPage } from "../detalhamento-solicitacao/detalha
   providers : [ServiceSolicitacao, DaoSolCompras]
 })
 export class HomeGraficoPage {
-
     listaSolicitacoes : SolicCompra[] = new Array<SolicCompra>();
+    tarefaSolicitacaoCompra : number = this.listaSolicitacoes.length ? this.listaSolicitacoes.length : 0;
+    tarefaOrdemCompra : number = 1;
+    tarefaSolicitacaoUrgencia : number = 5;
+    tarefaSugestoes : number = 8;
+    totalTarefas : number = this.tarefaSolicitacaoCompra + this.tarefaOrdemCompra + this.tarefaSolicitacaoUrgencia + this.tarefaSugestoes;
     mostrarCheck: boolean = false;
     plataforma : Platform;
     loader : any;
@@ -22,7 +26,7 @@ export class HomeGraficoPage {
 
   // Grafico
    public pieChartLabels:string[] = ['Solicitações de Compra', 'Ordem de Compra','Solicitação Urgência' ,'Sugestões'];
-   public pieChartData:number[] = [100, 70, 50, 20];
+   public pieChartData:number[] = [this.tarefaSolicitacaoCompra, this.tarefaOrdemCompra, this.tarefaSolicitacaoUrgencia, this.tarefaSugestoes];
    public pieChartType:string = 'doughnut';
 
    // events
@@ -47,6 +51,10 @@ export class HomeGraficoPage {
     this.consultar();
     this.buscarSolicitacoes();
     console.log('ionViewDidLoad ModalContasPage');
+  }
+
+  redirecionarSolicitacaoPage(){
+      this.navCtrl.push(SolicitacoesComprasPage);
   }
   /**
   * Metodo utilizado pado para aprovar a solicitação de compra

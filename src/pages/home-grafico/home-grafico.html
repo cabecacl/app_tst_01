@@ -1,9 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>240 Solicitacões abertas</ion-title>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-title style="text-align:center;">{{totalTarefas}} Solicitacões abertas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,10 +11,11 @@
       [labels]="pieChartLabels"
       [chartType]="pieChartType"
       (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"></canvas>
+      (chartClick)="chartClicked($event)">
+    </canvas>
   </div>
-  <button ion-button color="salmon"  >100</button><b>Solicitações de Compra</b><br>
-  <button ion-button color="blue" >70</button><b>Ordem de Compra</b><br>
-  <button ion-button color="navajo" >50</button><b>Solicitações Urgentes</b><br>
-  <button ion-button color="light" >20</button> <b>Sugestões</b><br>
+  <button ion-button color="salmon" (click)="redirecionarSolicitacaoPage()">{{tarefaSolicitacaoCompra}}</button><b>Solicitações de Compra</b><br>
+  <button ion-button color="blue" >{{tarefaOrdemCompra}}</button><b>Ordem de Compra</b><br>
+  <button ion-button color="navajo" >{{tarefaSolicitacaoUrgencia}}</button><b>Solicitações Urgentes</b><br>
+  <button ion-button color="light" >{{tarefaSugestoes}}</button> <b>Sugestões</b><br>
 </ion-content>
